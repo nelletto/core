@@ -16,6 +16,7 @@ from homeassistant.const import (
     CONF_PORT,
     CONF_USERNAME,
     CONF_VERIFY_SSL,
+    CONF_FORCE_HTML
 )
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.data_entry_flow import AbortFlow
@@ -37,6 +38,7 @@ from .const import (
     CONF_ENABLE_PUSH,
     CONF_EVENT_MESSAGE_DATA,
     CONF_FOLDER,
+    CONF_FORCE_HTML,
     CONF_MAX_MESSAGE_SIZE,
     CONF_SEARCH,
     CONF_SERVER,
@@ -78,6 +80,8 @@ CONFIG_SCHEMA = vol.Schema(
         vol.Optional(CONF_SEARCH, default="UnSeen UnDeleted"): str,
         # The default for new entries is to not include text and headers
         vol.Optional(CONF_EVENT_MESSAGE_DATA, default=[]): EVENT_MESSAGE_DATA_SELECTOR,
+        # Disable the HTML parsing ignoring headers
+        vol.Optional(CONF_FORCE_HTML, default=False): BOOLEAN_SELECTOR
     }
 )
 CONFIG_SCHEMA_ADVANCED = {
@@ -95,6 +99,8 @@ OPTIONS_SCHEMA = vol.Schema(
         vol.Optional(
             CONF_EVENT_MESSAGE_DATA, default=MESSAGE_DATA_OPTIONS
         ): EVENT_MESSAGE_DATA_SELECTOR,
+        # Disable the HTML parsing ignoring headers
+        vol.Optional(CONF_FORCE_HTML, default=False): BOOLEAN_SELECTOR
     }
 )
 
